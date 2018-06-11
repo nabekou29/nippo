@@ -1,9 +1,11 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import { sessionReducer } from 'redux-react-session';
 
-import Login from './login'
+import Login from './login';
 
 const reducer = combineReducers({
-    Login,
+  session: sessionReducer,
+  Login: Login,
 });
 
 export default reducer;

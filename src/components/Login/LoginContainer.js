@@ -9,8 +9,8 @@ const mapStateToProps = (state) => (state.Login);
 const mapDispatchToProps = (dispatch) => (bindActionCreators(Actions, dispatch));
 
 const Container = connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Component);
 
 export default Container;
