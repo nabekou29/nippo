@@ -68,7 +68,7 @@ class Component extends React.Component {
   onSetState() {
     return (e) => {
       const { value, name } = e.target;
-      let state = {...this.state};
+      let state = { ...this.state };
       state[name] = value;
       this.setState(state);
     };
@@ -92,7 +92,7 @@ class Component extends React.Component {
  * @param  {Object}   props   そのほかの属性値
  * @return {Object}           ログインボタン
  */
-const LoginButton = ({ onClick, ...props}) => (
+const LoginButton = ({ onClick, ...props }) => (
   <Button type="button" bsStyle="info" onClick={onClick} {...props}>
     <Glyphicon glyph="log-in"/> ログイン
   </Button>

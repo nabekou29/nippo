@@ -14,7 +14,7 @@ import {
  * @param  {boolean} Home ホームアイコンを表示するか
  * @return {Object}       ナビゲーションバー
  */
-export function AppBar({Home}) {
+export function AppBar({ Home }) {
   return (
     <Navbar>
       <Navbar.Header>
