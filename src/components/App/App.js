@@ -10,7 +10,11 @@ import {
   AppBar,
 } from '../common';
 
-export default class Component extends React.Component {
+/**
+ * ルーティングコンポーネント
+ * @extends React.Component
+ */
+class Component extends React.Component {
   render() {
     return (
       <BrowserRouter>
@@ -23,3 +27,5 @@ export default class Component extends React.Component {
     );
   }
 }
+
+export default Component;

@@ -2,16 +2,28 @@ import * as Action from '../actions/login';
 import { sessionService } from 'redux-react-session';
 import * as sessionApi from '../api/sessionApi';
 
-const INITIAL_STATE = {
-  message: '',
+/**
+ * ステータスの初期値を返します
+ * @return {Object}     初期値
+ */
+const initialState = () => {
+  return {
+    message: '',
+  };
 };
 
-export default function Reducer(state = INITIAL_STATE, action) {
-  let { /*payload,*/ meta } = action;
+/**
+ * ログイン画面のリデューサ
+ * @param  {Object} [state=initialState] ログイン画面の状態
+ * @param  {Object} action               アクション
+ * @return {Object}                      ログイン画面の状態
+ */
+export default function reducer(state = initialState(), action) {
+  let { type, payload } = action;
   let status;
-  switch (action.type) {
+  switch (type) {
   case Action.LOGIN:
-    status = login(meta.user, meta.history);
+    status = login(payload.user, payload.history);
     return {
       ...state,
       message: status === 'NG' ? 'IDまたはパスワードが正しくありません。' : '',
@@ -21,6 +33,12 @@ export default function Reducer(state = INITIAL_STATE, action) {
   }
 }
 
+/**
+ * ログイン処理
+ * @param  {Object} user    ユーザ
+ * @param  {Object} history RouterのHistory
+ * @return {string}         レスポンスのステータス
+ */
 function login(user, history) {
   let response = sessionApi.login(user);
   const { status, token } = response;

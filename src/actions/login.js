@@ -1,13 +1,26 @@
-// ログイン
+/**
+ * アクションタイプ: ログイン
+ * @type {String}
+ */
 export const LOGIN = 'LOGIN';
 
-export function login(user, history) {
+/**
+ * ログインアクションの生成
+ * @param  {string} id       ユーザID
+ * @param  {string} password ユーザパスワード
+ * @param  {Object} history  ルーティングヒストリ
+ * @return {Object}          ログインアクション
+ */
+export function login(id, password, history) {
   return {
     type: LOGIN,
-    payload: {},
-    meta: {
-      user: user,
+    payload: {
+      user: {
+        id,
+        password,
+      },
       history: history,
     },
+    meta: {},
   };
 }

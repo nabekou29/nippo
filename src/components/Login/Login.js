@@ -11,39 +11,24 @@ import {
 } from 'react-bootstrap';
 import {AppBar, FieldGroup} from '../common';
 
-export default class Component extends React.Component {
+/**
+ * ログイン画面コンポーネント
+ * @extends React.Component
+ */
+class Component extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      user: {
-        id: '',
-        password: ''
-      }
+      userId: '',
+      password: '',
     };
-    this.onLogin = this.onLogin.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
 
-  onLogin(history) {
-    const { user } = this.state;
-    this.props.login(user, history);
-  }
-
-  onChange(e) {
-    const { value, name } = e.target;
-    const { user } = this.state;
-    user[name] = value;
-    this.setState({ user });
-  }
-
+  /**
+   * レンダー
+   * @return {Object} メイン画面
+   */
   render() {
-    // ログインボタン
-    const LoginButton = withRouter(({ history }) => (
-      <Button type="button" bsStyle="info" onClick={() => this.onLogin(history)}>
-        <Glyphicon glyph="log-in"/> ログイン
-      </Button>
-    ));
-
     return (
       <div>
         <AppBar Home="Home"/>
@@ -57,10 +42,14 @@ export default class Component extends React.Component {
                 <Panel.Body>
                   {this.props.message && <Alert bsStyle="danger"><i>{this.props.message}</i></Alert>}
                   <form>
-                    <FieldGroup type="text" id="id" name="id" label="ID" placeholder="input your ID" onChange={this.onChange} />
-                    <FieldGroup type="password" id="pass" name="password" label="Password" placeholder="input your password" onChange={this.onChange}/>
+                    <FieldGroup type="text" name="userId" label="ID" placeholder="input your ID"
+                      onChange={this.onSetState()}
+                      onEnterKeyDown={this.onLogin()} />
+                    <FieldGroup type="password" name="password" label="Password" placeholder="input your password"
+                      onChange={this.onSetState()}
+                      onEnterKeyDown={this.onLogin()} />
                     <Col mdOffset={7} md={4}>
-                      <LoginButton />
+                      <LoginButton onClick={this.onLogin()} />
                     </Col>
                   </form>
                 </Panel.Body>
@@ -71,4 +60,42 @@ export default class Component extends React.Component {
       </div>
     );
   }
+
+  /**
+   * ステートをセットする関数を生成
+   * @return {function} ステートセット関数
+   */
+  onSetState() {
+    return (e) => {
+      const { value, name } = e.target;
+      let state = {...this.state};
+      state[name] = value;
+      this.setState(state);
+    };
+  }
+
+  /**
+   * ログインする関数を生成
+   * @return {function} ログイン関数
+   */
+  onLogin() {
+    return () => {
+      const { userId, password } = this.state;
+      this.props.login(userId, password, this.props.history);
+    };
+  }
 }
+
+/**
+ * ログインボタンを生成
+ * @param  {function} onClick クリック時イベント
+ * @param  {Object}   props   そのほかの属性値
+ * @return {Object}           ログインボタン
+ */
+const LoginButton = ({ onClick, ...props}) => (
+  <Button type="button" bsStyle="info" onClick={onClick} {...props}>
+    <Glyphicon glyph="log-in"/> ログイン
+  </Button>
+);
+
+export default withRouter(Component);
