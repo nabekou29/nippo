@@ -6,10 +6,12 @@ import {
   Col,
   Panel,
   Alert,
-  Button,
-  Glyphicon,
 } from 'react-bootstrap';
-import {AppBar, FieldGroup} from '../common';
+import {
+  AppBar,
+  FieldGroup,
+} from '../../component/App';
+import LoginButton from './LoginButton';
 
 /**
  * ログイン画面コンポーネント
@@ -44,10 +46,10 @@ class Component extends React.Component {
                   <form>
                     <FieldGroup type="text" name="userId" label="ID" placeholder="input your ID"
                       onChange={this.onSetState()}
-                      onEnterKeyDown={this.onLogin()} />
+                      onKeyDown={this.onLoginEnterKeyDown()} />
                     <FieldGroup type="password" name="password" label="Password" placeholder="input your password"
                       onChange={this.onSetState()}
-                      onEnterKeyDown={this.onLogin()} />
+                      onKeyDown={this.onLoginEnterKeyDown()} />
                     <Col mdOffset={7} md={4}>
                       <LoginButton onClick={this.onLogin()} />
                     </Col>
@@ -84,18 +86,18 @@ class Component extends React.Component {
       this.props.login(userId, password, this.props.history);
     };
   }
-}
 
-/**
- * ログインボタンを生成
- * @param  {function} onClick クリック時イベント
- * @param  {Object}   props   そのほかの属性値
- * @return {Object}           ログインボタン
- */
-const LoginButton = ({ onClick, ...props }) => (
-  <Button type="button" bsStyle="info" onClick={onClick} {...props}>
-    <Glyphicon glyph="log-in"/> ログイン
-  </Button>
-);
+  /**
+   * エンターキー押下時にログインする関数を生成
+   * @return {function} ログイン関数
+   */
+  onLoginEnterKeyDown() {
+    return (e) => {
+      if (e.keyCode === 13) {
+        this.onLogin()();
+      }
+    };
+  }
+}
 
 export default withRouter(Component);

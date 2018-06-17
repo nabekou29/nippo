@@ -8,7 +8,7 @@ import {
 import Login from '../Login/LoginContainer';
 import {
   AppBar,
-} from '../common';
+} from '../../component/App';
 
 /**
  * ルーティングコンポーネント

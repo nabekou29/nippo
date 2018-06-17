@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { sessionService } from 'redux-react-session';
 
 import Allreducer from './reducers';
-import App from './components/App/App';
+import App from './container/App/App';
 
 let store = createStore(
   Allreducer
