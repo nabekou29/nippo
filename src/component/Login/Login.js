@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { sessionService } from 'redux-react-session';
 import {
   Grid,
   Row,
@@ -27,10 +28,11 @@ class Component extends React.Component {
   }
 
   /**
-   * レンダー
+   * レンダリング
    * @return {Object} メイン画面
    */
   render() {
+    sessionService.deleteSession();
     return (
       <div>
         <AppBar Home="Home"/>

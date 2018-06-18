@@ -8,7 +8,7 @@ import {
 import Login from '../Login/LoginContainer';
 import {
   AppBar,
-  Auth,
+  RouteWithAuth,
 } from '../../component/App';
 
 /**
@@ -21,10 +21,8 @@ class Component extends React.Component {
       <BrowserRouter>
         <Switch>
           {/* ログイン画面 */}
+          <RouteWithAuth exact path='/' component={<AppBar Home/>} />
           <Route exact path='/login' component={Login} />
-          <Auth>
-            <Route exact path='/' component={() => (<div><AppBar Home/></div>)} />
-          </Auth>
         </Switch>
       </BrowserRouter>
     );
