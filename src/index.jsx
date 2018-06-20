@@ -7,16 +7,15 @@ import { sessionService } from 'redux-react-session';
 import Allreducer from './reducers';
 import App from './container/App/App';
 
-let store = createStore(
-  Allreducer
-);
+const store = createStore(Allreducer);
 
 // Init the session service
 sessionService.initSessionService(store);
 
+/* global document */
 render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

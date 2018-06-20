@@ -9,7 +9,7 @@ export const login = (user) => {
       email: 'example@com',
       firstName: 'test',
       lastName: 'test',
-    }
+    },
   };
   return response;
 };

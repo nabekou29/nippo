@@ -15,11 +15,16 @@ import {
  * @param  {Object}   props   その他の属性値
  * @return {Object}           入力フォーム
  */
-export function FieldGroup({ id, label, help, ...props }) {
+export function FieldGroup({
+  id,
+  label,
+  help,
+  ...props
+}) {
   return (
     <FormGroup controlId={id}>
       <ControlLabel>{label}</ControlLabel>
-      <FormControl id={id} {...props}/>
+      <FormControl id={id} {...props} />
       {help && <HelpBlock>{help}</HelpBlock>}
     </FormGroup>
   );
