@@ -13,7 +13,7 @@ import {
 export default function LoginButton({ onClick, ...props }) {
   return (
     <Button type="button" bsStyle="info" onClick={onClick} {...props}>
-      <Glyphicon glyph="log-in"/> ログイン
+      <Glyphicon glyph="log-in" /> ログイン
     </Button>
   );
 }

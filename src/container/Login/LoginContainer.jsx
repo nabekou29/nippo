@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import Component from '../../component/Login/Login';
 import * as Actions from './../../actions/login';
 
-const mapStateToProps = (state) => (state.Login);
+const mapStateToProps = state => (state.Login);
 
-const mapDispatchToProps = (dispatch) => (bindActionCreators(Actions, dispatch));
+const mapDispatchToProps = dispatch => (bindActionCreators(Actions, dispatch));
 
 const Container = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Component);
 
 export default Container;

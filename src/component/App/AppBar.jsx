@@ -15,11 +15,10 @@ export function AppBar({ Home }) {
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
-          {Home && <a href="/"><Glyphicon glyph="home"/> Home</a>}
+          {Home && <a href="/"><Glyphicon glyph="home" /> Home</a>}
         </Navbar.Brand>
       </Navbar.Header>
-      <Navbar.Collapse>
-      </Navbar.Collapse>
+      <Navbar.Collapse />
     </Navbar>
   );
 }

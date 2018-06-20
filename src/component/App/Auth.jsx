@@ -8,7 +8,6 @@ import { sessionService } from 'redux-react-session';
  * @extends React
  */
 class Component extends React.Component {
-
   /**
    * レンダリング前処理
    */
