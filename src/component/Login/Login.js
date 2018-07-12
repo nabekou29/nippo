@@ -87,6 +87,7 @@ class Component extends React.Component {
                       name="userId"
                       label="ID"
                       placeholder="input your ID"
+                      autoFocus
                       onChange={this.onSetState()}
                       onKeyDown={this.onLoginEnterKeyDown()}
                     />
